@@ -505,6 +505,47 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .toast{max-width:min(92vw,480px);padding:12px 18px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:14px;font-weight:500;text-align:center;opacity:0;transform:translateY(20px);transition:opacity .35s,transform .45s var(--ease)}
 .toast.show{opacity:1;transform:none}
 
+
+/* request sample work sheet */
+.sheet-box{position:relative;width:min(520px,100%);padding:30px 26px 24px;border-radius:20px;background:var(--bg-2);border:1px solid var(--line-2);box-shadow:0 30px 80px -20px rgba(0,0,0,.7);transform:translateY(18px) scale(.98);transition:transform .55s var(--ease)}
+.modal.open .sheet-box{transform:none}
+.sheet-box h3{margin:0 50px 8px 0;font-family:var(--f-title);font-weight:800;text-transform:uppercase;font-size:clamp(34px,5vw,46px);line-height:.92}
+.sheet-lead{margin:0 0 22px;color:var(--ink-2);font-size:15.5px;max-width:40ch}
+.opts{display:grid;gap:10px}
+.opt{display:flex;align-items:center;gap:16px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:rgba(5,10,11,.4);transition:border-color .3s,background .3s,transform .35s var(--ease);opacity:0;transform:translateY(10px)}
+.modal.open .opt{opacity:1;transform:none;transition:border-color .3s,background .3s,opacity .5s ease,transform .6s var(--ease)}
+.modal.open .opt:nth-child(1){transition-delay:0s,0s,.08s,.08s}
+.modal.open .opt:nth-child(2){transition-delay:0s,0s,.15s,.15s}
+.modal.open .opt:nth-child(3){transition-delay:0s,0s,.22s,.22s}
+.opt:hover,.opt:focus-visible{border-color:var(--orange);background:rgba(240,138,60,.08)}
+.opt-ic{flex:none;width:46px;height:46px;border-radius:12px;display:grid;place-items:center}
+.opt-ic svg{width:22px;height:22px}
+.opt-ic.mail{background:rgba(240,138,60,.14);color:var(--orange-2)}
+.opt-ic.wa{background:rgba(37,211,102,.13);color:#3ddc84}
+.opt-ic.ig{background:linear-gradient(135deg,rgba(254,218,117,.16),rgba(214,41,118,.18),rgba(79,91,213,.18));color:#f3a6c8}
+.opt-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.opt-t b{font-weight:500;font-size:16px;color:var(--ink)}
+.opt-t small{font:500 12.5px/1.3 var(--f-osd);color:var(--muted);overflow-wrap:anywhere}
+.opt-go{flex:none;width:20px;height:20px;color:var(--muted);transition:transform .4s var(--ease),color .3s}
+.opt:hover .opt-go,.opt:focus-visible .opt-go{transform:translateX(4px);color:var(--orange)}
+.sheet-note{margin:16px 0 0;font-size:13px;color:var(--muted)}
+.opt-group{display:grid}
+button.opt{width:100%;text-align:left;font:inherit;color:inherit}
+.opt .chev{transition:transform .4s var(--ease),color .3s}
+.opt[aria-expanded="true"]{border-color:var(--orange);background:rgba(240,138,60,.08)}
+.opt[aria-expanded="true"] .chev,.opt[aria-expanded="true"]:hover .chev{transform:rotate(180deg);color:var(--orange)}
+.opt:hover .chev{transform:translateY(2px)}
+.opt-more{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-height:0;overflow:hidden;opacity:0;transition:max-height .45s var(--ease),opacity .3s,margin .45s var(--ease)}
+.opt-more.on{max-height:120px;opacity:1;margin-top:8px}
+.om{display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 10px;border-radius:10px;border:1px solid var(--line-2);font-size:13.5px;color:var(--ink-2);text-align:center;transition:background .3s,color .3s,border-color .3s}
+.om:hover,.om:focus-visible{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.om.ok{background:var(--teal);border-color:var(--teal);color:#04100f}
+@media (max-width:400px){.opt-more{grid-template-columns:1fr}.opt-more.on{max-height:200px}}
+@media (max-width:600px){
+  .modal.sheet{place-items:end center;padding:0}
+  .sheet-box{width:100%;border-radius:22px 22px 0 0;padding:26px 20px calc(env(safe-area-inset-bottom,0px) + 22px);transform:translateY(100%)}
+  .modal.sheet.open .sheet-box{transform:none}
+}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
   .grain{animation:none}
@@ -584,10 +625,10 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
     <p class="hero-sub hero-fade" style="--d:.9s"><strong>Photographer, cinematographer, video editor, AI video artist and colour grading artist.</strong> I take your idea from the first frame to the final grade, so your story looks and feels like cinema.</p>
     <div class="hero-ctas hero-fade" style="--d:1.1s">
       <a href="#craft" class="btn btn-primary magnetic">See what I do</a>
-      <a href="#contact" class="btn btn-ghost magnetic" data-request>
+      <button type="button" class="btn btn-ghost magnetic" data-samples aria-haspopup="dialog" aria-controls="samples">
         <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 15l5-4.5 4 3.5 3-2.5 6 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="16" cy="9.5" r="1.6" fill="currentColor"/></svg>
         Request sample work
-      </a>
+      </button>
     </div>
   </div>
   <div class="flash" aria-hidden="true"></div>
@@ -818,7 +859,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
           </a>
         </div>
         <ul class="socials">
-          <li><a data-cfg="instagram" href="#">Instagram @http.aliyan</a></li>
+          <li><a data-cfg="instagram" href="#">Instagram</a></li>
           <li><a data-cfg="youtube" href="#">YouTube</a></li>
           <li><a data-cfg="tiktok" href="#">TikTok</a></li>
           <li><a data-cfg="behance" href="#">Behance</a></li>
@@ -872,6 +913,35 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
   <div class="modal-box">
     <button type="button" class="modal-x" data-close aria-label="Close showreel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     <div class="modal-media"></div>
+  </div>
+</div>
+<div class="modal sheet" id="samples" role="dialog" aria-modal="true" aria-labelledby="samplesTitle" aria-hidden="true">
+  <div class="modal-bg" data-close></div>
+  <div class="sheet-box">
+    <button type="button" class="modal-x" data-close aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <h3 id="samplesTitle">Request sample work</h3>
+    <p class="sheet-lead">Pick the easiest way to reach me and I'll send samples that fit your project.</p>
+    <div class="opts">
+      <div class="opt-group">
+        <button type="button" class="opt" data-opt="mail" aria-expanded="false" aria-controls="mailMore">
+          <span class="opt-ic mail"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4 7.5l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+          <span class="opt-t"><b>Contact me on email</b><small></small></span><svg class="opt-go chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="opt-more" id="mailMore">
+          <a class="om" data-mail="gmail" href="#" target="_blank" rel="noopener">Open in Gmail</a>
+          <a class="om" data-mail="app" href="#">Open email app</a>
+          <button type="button" class="om" data-mail="copy">Copy address</button>
+        </div>
+      </div>
+      <a class="opt" data-opt="whatsapp" href="#">
+        <span class="opt-ic wa"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3a.5.5 0 0 0 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg></span>
+        <span class="opt-t"><b>Contact me on WhatsApp</b><small></small></span><svg class="opt-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="opt" data-opt="instagram" href="#">
+        <span class="opt-ic ig"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg></span>
+        <span class="opt-t"><b>Contact me on Instagram</b><small></small></span><svg class="opt-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
   </div>
 </div>
 <div class="toast-wrap"><div class="toast" role="status" aria-live="polite"></div></div>
@@ -1473,15 +1543,65 @@ safe('contact', () => {
   $('#formReset').addEventListener('click', () => form.classList.remove('sent'));
 });
 
-/* ---------- request sample work: jump to the form with the message started ---------- */
-safe('request', () => {
-  $$('[data-request]').forEach(a => a.addEventListener('click', () => {
-    const ta = $('#contactForm textarea[name="message"]');
-    if (!ta) return;
-    if (!ta.value.trim()) ta.value = "Hi Aliyan, I'd like to see some samples of your work. My project is about ";
-    $('#contactForm').classList.remove('sent');
-    setTimeout(() => { try { ta.focus({ preventScroll: true }); ta.setSelectionRange(ta.value.length, ta.value.length); } catch (_) {} }, REDUCE ? 0 : 900);
-  }));
+/* ---------- request sample work: choose email, WhatsApp or Instagram ---------- */
+safe('samples', () => {
+  const m = $('#samples'); if (!m) return; let last;
+  const msg = "Hi Aliyan, I came across your portfolio and I'd like to see some samples of your work.";
+  const set = (k, href, detail, ext) => {
+    const a = $(`[data-opt="${k}"]`, m); if (!a) return;
+    if (!href) { a.remove(); return; }
+    a.href = href; $('small', a).textContent = detail;
+    if (ext) { a.target = '_blank'; a.rel = 'noopener'; }
+  };
+  const mailBtn = $('[data-opt="mail"]', m), mailMore = $('#mailMore', m);
+  if (!CONFIG.email) { mailBtn && mailBtn.closest('.opt-group').remove(); }
+  else {
+    const subj = 'Sample work request', body = msg + '\n\nMy project: ';
+    $('small', mailBtn).textContent = CONFIG.email;
+    $('[data-mail="gmail"]', m).href = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(CONFIG.email)}&su=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
+    $('[data-mail="app"]', m).href = `mailto:${CONFIG.email}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
+    mailBtn.addEventListener('click', () => {
+      const on = !mailMore.classList.contains('on');
+      mailMore.classList.toggle('on', on); mailBtn.setAttribute('aria-expanded', on);
+    });
+    const cp = $('[data-mail="copy"]', m);
+    cp.addEventListener('click', async () => {
+      let ok = false;
+      try { await navigator.clipboard.writeText(CONFIG.email); ok = true; } catch (_) {
+        const ta = document.createElement('textarea'); ta.value = CONFIG.email; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select();
+        try { ok = document.execCommand('copy'); } catch (__) {} ta.remove();
+      }
+      if (ok) { cp.textContent = 'Copied'; cp.classList.add('ok'); toast('Email address copied'); setTimeout(() => { cp.textContent = 'Copy address'; cp.classList.remove('ok'); }, 1800); }
+      else toast('My email is ' + CONFIG.email);
+    });
+  }
+  const wa = String(CONFIG.whatsapp || '').replace(/\D/g, '');
+  set('whatsapp', wa && `https://wa.me/${wa}?text=${encodeURIComponent(msg)}`, wa && `+${wa.slice(0, 2)} ${wa.slice(2, 5)} ${wa.slice(5)}`, true);
+  const ig = CONFIG.instagram || '';
+  set('instagram', ig, 'Send me a direct message', true);
+  const igA = $('[data-opt="instagram"]', m);
+  igA && igA.addEventListener('click', () => {
+    try { navigator.clipboard.writeText(msg).then(() => toast('Message copied. Paste it in your Instagram DM'), () => {}); } catch (_) {}
+  });
+  const open = () => {
+    last = document.activeElement;
+    m.classList.add('open'); m.setAttribute('aria-hidden', 'false');
+    const first = $('.opt', m); setTimeout(() => (first || $('.modal-x', m)).focus({ preventScroll: true }), 60);
+  };
+  const close = () => { m.classList.remove('open'); m.setAttribute('aria-hidden', 'true'); if (mailMore) { mailMore.classList.remove('on'); mailBtn && mailBtn.setAttribute('aria-expanded', 'false'); } last && last.focus && last.focus({ preventScroll: true }); };
+  $$('[data-samples]').forEach(b => b.addEventListener('click', open));
+  m.addEventListener('click', e => {
+    if (e.target.closest('[data-close]')) { close(); return; }
+    if (e.target.closest('a.opt, a.om')) setTimeout(close, 350);
+  });
+  m.addEventListener('keydown', e => {
+    if (e.key !== 'Tab') return;
+    const f = $$('a[href],button', m).filter(x => x.offsetParent !== null); if (!f.length) return;
+    const i = f.indexOf(document.activeElement);
+    if (e.shiftKey && i <= 0) { f[f.length - 1].focus(); e.preventDefault(); }
+    else if (!e.shiftKey && i === f.length - 1) { f[0].focus(); e.preventDefault(); }
+  });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && m.classList.contains('open')) close(); });
 });
 
 /* ---------- showreel modal ---------- */
