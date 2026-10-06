@@ -953,7 +953,7 @@ button.opt{width:100%;text-align:left;font:inherit;color:inherit}
 const CONFIG = {
   email: "aliyanashraf2005@gmail.com",
   whatsapp: "9230884089271", // country code + number, digits only, e.g. "923001234567"
-  instagram: "https://instagram.com/http.aliyan",
+  instagram: "",
   youtube: "",
   tiktok: "",
   behance: "",
@@ -1043,6 +1043,7 @@ safe('config', () => {
     if (!url) { (a.closest('li') || a.closest('.quick') || a).remove(); return; }
     a.href = url; a.target = '_blank'; a.rel = 'noopener';
   });
+  $$('.socials').forEach(u => { if (!u.querySelector('li')) u.remove(); });
   if (CONFIG.photo) { const img = $('.vf-photo'); img.src = CONFIG.photo; img.hidden = false; $('.vf').classList.add('has-photo'); }
   const yr = $('#yr'); if (yr) yr.textContent = new Date().getFullYear();
 });
